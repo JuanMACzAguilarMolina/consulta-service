@@ -13,4 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 public class ConsultaReporte {
 	
 	private String getEjecutivo;
+	
+	private String getAclaraciones;
 }
