@@ -1,6 +1,10 @@
 package mx.com.santander.consulta.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -16,24 +20,32 @@ public class InformacionGeneral implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String idApp;
-	String dscApp;
-	int idCanal;
-	String dscCanal;
-	int idRamo;
-	String dscRamo;
-	String numPol;
-	int idStatPol;
-	String dscStatPol;
-	int idFormaPago;
-	String dscFormaPago;
-	int idMtvoCancel;
-	String dscMtvoCancel;
-	String idMedioPago;
-	String dscMedioPago;
-	String fchSuscPol;
-	String fchVigHastaPol;
-	String fchRehabPol;
-	String fchCancelPol;
+	private String idApp;
+	private String dscApp;
+	private int idCanal;
+	private String dscCanal;
+	private int idRamo;
+	private String dscRamo;
+	private String numPol;
+	private int idStatPol;
+	private String dscStatPol;
+	private int idFormaPago;
+	private String dscFormaPago;
+	private int idMtvoCancel;
+	private String dscMtvoCancel;
+	private String idMedioPago;
+	private String dscMedioPago;
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchSuscPol;
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchVigHastaPol;
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchRehabPol;
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchCancelPol;
 
 }

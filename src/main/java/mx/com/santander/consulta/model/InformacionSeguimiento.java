@@ -1,6 +1,9 @@
 package mx.com.santander.consulta.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -16,19 +19,26 @@ public class InformacionSeguimiento implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String codStatSegui; 
-	String dscStatSegui; 
-	String dscStatMarca;
-	String fchContaSeg; 
-	String fchCobroPol;
-	String fchDocum;
-	String flgNeteo; 
-	int impPmaNeteo;
-	int numPorcePond;
-	int impPmaPond; 
-	int impRcbosCancel;
-	String dscObser; 
-	int statusCode;
-	String statusDesc;
+	private String codStatSegui; 
+	private String dscStatSegui; 
+	private String dscStatMarca;
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchContaSeg; 
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchCobroPol;
+	
+	@JsonFormat(pattern ="yyyyMMdd")
+	private Date fchDocum;
+	
+	private String flgNeteo; 
+	private int impPmaNeteo;
+	private int numPorcePond;
+	private int impPmaPond; 
+	private int impRcbosCancel;
+	private String dscObser; 
+	private int statusCode;
+	private String statusDesc;
 
 }

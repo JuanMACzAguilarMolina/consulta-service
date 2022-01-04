@@ -14,13 +14,13 @@ public class DatosContratacion implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int idRegion;
-	String dscRegion;
-	int idZona;
-	String dscZona;
-	int idSucur;
-	String dscSucur;
-	Double impPrima100;
-	Long numCtaPrefClnteContr;
+	private int idRegion;
+	private String dscRegion;
+	private int idZona;
+	private String dscZona;
+	private int idSucur;
+	private String dscSucur;
+	private Double impPrima100;
+	private Long numCtaPrefClnteContr;
 
 }

@@ -17,9 +17,9 @@ public class ConsultaSolicitudesAclaracionesRequest implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	String idApp;
-	int idCanal;
-	int idRamo;
-	String numPol;
+	private String idApp;
+	private int idCanal;
+	private int idRamo;
+	private String numPol;
 	
 }

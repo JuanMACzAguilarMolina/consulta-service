@@ -16,11 +16,11 @@ public class InformacionContratante implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String txtBucClnteContr;
-	String txtNombClnteContr;
-	int idSgmtoClnteContr;
-	String dscSgmtoBanco;
-	String dscSgmtoClnte;
-	String dscMdlAtnSgmtoBanco;
+	private String txtBucClnteContr;
+	private String txtNombClnteContr;
+	private int idSgmtoClnteContr;
+	private String dscSgmtoBanco;
+	private String dscSgmtoClnte;
+	private String dscMdlAtnSgmtoBanco;
 
 }

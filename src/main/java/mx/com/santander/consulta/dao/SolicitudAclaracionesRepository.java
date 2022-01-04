@@ -48,15 +48,11 @@ public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRe
 			ConsultaSolicitudesAclaracionesRequest consultaSolicitudesAclaracionesRequest) {
 		log.info("Inicio de getConsulta para extraccion de datos ");
 		ConsultaSolicitudAclaracionesResponse response;
-		//try {
-			
-		
+				
 		return response = this.jdbcTemplate.queryForObject(consultas.getGetAclaraciones(),
 				new RowMapper<ConsultaSolicitudAclaracionesResponse>() {
 			public ConsultaSolicitudAclaracionesResponse mapRow(ResultSet rs, int i) throws SQLException{
-				
-				
-				
+							
 				informacionGeneral.setIdApp(rs.getString("idApp"));
 				informacionGeneral.setDscApp(rs.getString("dscApp"));
 				informacionGeneral.setIdCanal(rs.getInt("idCanal"));
@@ -72,11 +68,10 @@ public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRe
 				informacionGeneral.setDscMtvoCancel(rs.getString("dscMtvoCancel"));
 				informacionGeneral.setIdMedioPago(rs.getString("idMedioPago"));
 				informacionGeneral.setDscMedioPago(rs.getString("dscMedioPago"));
-				informacionGeneral.setFchSuscPol(rs.getString("fchSuscPol"));
-				informacionGeneral.setFchVigHastaPol(rs.getString("fchVigHastaPol"));
-				informacionGeneral.setFchRehabPol(rs.getString("fchRehabPol"));
-				informacionGeneral.setFchCancelPol(rs.getString("fchCancelPol"));
-				
+				informacionGeneral.setFchSuscPol(rs.getDate("fchSuscPol"));
+				informacionGeneral.setFchVigHastaPol(rs.getDate("fchVigHastaPol"));
+				informacionGeneral.setFchRehabPol(rs.getDate("fchRehabPol"));
+				informacionGeneral.setFchCancelPol(rs.getDate("fchCancelPol"));
 				datosContratacion.setIdRegion(rs.getInt("idRegion"));
 				datosContratacion.setDscRegion(rs.getString("dscRegion"));
 				datosContratacion.setIdZona(rs.getInt("idZona"));
@@ -101,9 +96,9 @@ public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRe
 				informacionSeguimiento.setCodStatSegui(rs.getString("codStatSegui"));
 				informacionSeguimiento.setDscStatSegui(rs.getString("dscStatSegui"));
 				informacionSeguimiento.setDscStatMarca(rs.getString("dscStatMarca"));
-				informacionSeguimiento.setFchContaSeg(rs.getString("fchContaSeg"));
-				informacionSeguimiento.setFchCobroPol(rs.getString("fchCobroPol"));
-				informacionSeguimiento.setFchDocum(rs.getString("fchDocum"));
+				informacionSeguimiento.setFchContaSeg(rs.getDate("fchContaSeg"));
+				informacionSeguimiento.setFchCobroPol(rs.getDate("fchCobroPol"));
+				informacionSeguimiento.setFchDocum(rs.getDate("fchDocum"));
 				informacionSeguimiento.setFlgNeteo(rs.getString("flgNeteo"));
 				informacionSeguimiento.setImpPmaNeteo(rs.getInt("impPmaNeteo"));
 				informacionSeguimiento.setNumPorcePond(rs.getInt("numPorcePond"));
@@ -122,12 +117,7 @@ public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRe
 				
 			}
 		},consultaSolicitudesAclaracionesRequest.getIdApp(),consultaSolicitudesAclaracionesRequest.getIdCanal(),consultaSolicitudesAclaracionesRequest.getIdRamo(),consultaSolicitudesAclaracionesRequest.getNumPol());
-		/*}catch (Exception  e) {
-			informacionSeguimiento.setStatusCode(1);
-			informacionSeguimiento.setStatusDesc("NO SE PUDIERON RECUPERAR LOS DATOS DE LA PÓLIZA: " + consultaSolicitudesAclaracionesRequest.getIdApp()+ " " +e.getMessage());
-			consulta.setInformacionSeguimiento(informacionSeguimiento);
-			return consulta;
-		}*/
+	
 	}
 
 }

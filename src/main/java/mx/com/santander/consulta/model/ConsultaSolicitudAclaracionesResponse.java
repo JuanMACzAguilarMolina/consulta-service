@@ -18,11 +18,11 @@ public class ConsultaSolicitudAclaracionesResponse implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	InformacionGeneral informacionGeneral;
-	DatosContratacion datosContratacion;
-	DatosEjecutivo datosEjecutivo;
-	InformacionContratante informacionContratante;
-	InformacionSeguimiento informacionSeguimiento;
+	private InformacionGeneral informacionGeneral;
+	private DatosContratacion datosContratacion;
+	private DatosEjecutivo datosEjecutivo;
+	private InformacionContratante informacionContratante;
+	private InformacionSeguimiento informacionSeguimiento;
 
 	
 }
