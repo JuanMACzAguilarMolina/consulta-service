@@ -5,12 +5,15 @@ import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import mx.com.santander.consulta.controller.SolicitudAclaracionesController;
@@ -30,9 +33,6 @@ class SolicitudAclaracionesControllerTest {
 
 	SolicitudAclaracionesController controller = new SolicitudAclaracionesController();
 
-	ConsultaSolicitudesAclaracionesRequest request = new ConsultaSolicitudesAclaracionesRequest();
-	ConsultaSolicitudAclaracionesResponse aclaraciones = new ConsultaSolicitudAclaracionesResponse();
-
 	@BeforeEach
 	void setUp() throws Exception {
 
@@ -42,7 +42,9 @@ class SolicitudAclaracionesControllerTest {
 
 	@Test
 	void getConsulta() throws ParseException {
-
+		
+		ConsultaSolicitudesAclaracionesRequest request = new ConsultaSolicitudesAclaracionesRequest();
+		ConsultaSolicitudAclaracionesResponse aclaraciones = new ConsultaSolicitudAclaracionesResponse();
 		request.setIdApp("RC");
 		request.setIdCanal(1);
 		request.setIdRamo(13);
@@ -122,14 +124,31 @@ class SolicitudAclaracionesControllerTest {
 		when(service.getConsulta(request)).thenReturn(aclaraciones);
 		ResponseEntity<?> responseEntity = controller.getConsulta(request);
 
-		assertEquals(200, responseEntity.getStatusCode().value());
+		assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+		assertEquals(aclaraciones,responseEntity.getBody());
 
-		// assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+	}
+	
+	@Test
+	void getConsultaError() throws ParseException {
+		
+		ConsultaSolicitudesAclaracionesRequest request = new ConsultaSolicitudesAclaracionesRequest();
+		
+		request.setIdApp("RC");
+		request.setIdCanal(1);
+		request.setIdRamo(13);
+		request.setNumPol("14570");
 
-		// ConsultaSolicitudAclaracionesResponse x =
-		// (ConsultaSolicitudAclaracionesResponse) responseEntity.getBody();
-		// x.getInformacionGeneral().getDscApp();
-		// assertEquals(aclaraciones,responseEntity.getBody());
+		Map<String, Object> responseNotFound = new HashMap<>();
+		responseNotFound.put("statusCode", "1");
+		responseNotFound.put("statusDesc", "NO SE PUDIERON RECUPERAR LOS DATOS DE LA PÓLIZA: "
+				+ "14570" + " Datos de entrada erroneos");
+		
+		when(service.getConsulta(request)).thenThrow(new RuntimeException());
+		ResponseEntity<?> responseEntity = controller.getConsulta(request);
+
+		assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
+		assertEquals(responseNotFound,responseEntity.getBody());
 
 	}
 }
