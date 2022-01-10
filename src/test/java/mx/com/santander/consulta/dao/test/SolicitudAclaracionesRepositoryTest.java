@@ -1,24 +1,22 @@
-package mx.com.santander.consulta;
+package mx.com.santander.consulta.dao.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import mx.com.santander.consulta.controller.SolicitudAclaracionesController;
+import mx.com.santander.consulta.consultas.ConsultaReporte;
+import mx.com.santander.consulta.dao.ConsultaSolicitudAclaracionesMapper;
+import mx.com.santander.consulta.dao.ISolicitudAclaracionesRepository;
+import mx.com.santander.consulta.dao.SolicitudAclaracionesRepository;
 import mx.com.santander.consulta.model.ConsultaSolicitudAclaracionesResponse;
 import mx.com.santander.consulta.model.ConsultaSolicitudesAclaracionesRequest;
 import mx.com.santander.consulta.model.DatosContratacion;
@@ -26,33 +24,43 @@ import mx.com.santander.consulta.model.DatosEjecutivo;
 import mx.com.santander.consulta.model.InformacionContratante;
 import mx.com.santander.consulta.model.InformacionGeneral;
 import mx.com.santander.consulta.model.InformacionSeguimiento;
-import mx.com.santander.consulta.service.ISolicitudAclaracionesService;
 
-@WebMvcTest(SolicitudAclaracionesController.class)
-class SolicitudAclaracionesControllerTest {
-	
-	@Autowired
-	private MockMvc mockMvc;
-	
+class SolicitudAclaracionesRepositoryTest {
 
-	@MockBean
-	private ISolicitudAclaracionesService service;
+	private JdbcTemplate jdbcTemplate;
 	
-	private static ObjectMapper mapper = new ObjectMapper();
-	
+	private ConsultaReporte consultas = new ConsultaReporte();
+
+	private ISolicitudAclaracionesRepository isolicitudAclaracionesRepository = new SolicitudAclaracionesRepository();
+
+	@BeforeEach
+	void setUp() throws Exception {
+
+		jdbcTemplate = Mockito.mock(JdbcTemplate.class);
+		isolicitudAclaracionesRepository.setRepository(jdbcTemplate);
+		consultas.setGetAclaraciones("");
+		isolicitudAclaracionesRepository.setConsultas(consultas);
+	}
+
 	@Test
-	void solicitudAclaracionesGet() throws Exception{
-		
+	void getConsultaRepositoryTest() throws ParseException {
+
+		ConsultaSolicitudesAclaracionesRequest request = new ConsultaSolicitudesAclaracionesRequest();
+		ConsultaSolicitudAclaracionesResponse aclaraciones = new ConsultaSolicitudAclaracionesResponse();
+
+		request.setIdApp("RC");
+		request.setIdCanal(1);
+		request.setIdRamo(13);
+		request.setNumPol("14570");
+
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-		
-		ConsultaSolicitudAclaracionesResponse consulta = new ConsultaSolicitudAclaracionesResponse();
-		
+
 		InformacionGeneral informacionGeneral = new InformacionGeneral();
 		DatosContratacion datosContratacion = new DatosContratacion();
 		DatosEjecutivo datosEjecutivo = new DatosEjecutivo();
 		InformacionContratante informacionContratante = new InformacionContratante();
 		InformacionSeguimiento informacionSeguimiento = new InformacionSeguimiento();
-		
+
 		informacionGeneral.setIdApp("RC");
 		informacionGeneral.setDscApp("RECTOR");
 		informacionGeneral.setIdCanal(1);
@@ -72,7 +80,7 @@ class SolicitudAclaracionesControllerTest {
 		informacionGeneral.setFchVigHastaPol(formato.parse("2021-09-04 00:00:00"));
 		informacionGeneral.setFchRehabPol(null);
 		informacionGeneral.setFchCancelPol(null);
-		
+
 		datosContratacion.setIdRegion(0);
 		datosContratacion.setDscRegion("SIN REGION");
 		datosContratacion.setIdZona(0);
@@ -80,20 +88,19 @@ class SolicitudAclaracionesControllerTest {
 		datosContratacion.setIdSucur(9002);
 		datosContratacion.setDscSucur("PRUEBAS");
 		datosContratacion.setImpPrima100(4592.61);
-		
-		
+
 		datosEjecutivo.setIdNomina(10065);
 		datosEjecutivo.setIdEjtvoEmite("10065");
 		datosEjecutivo.setTxtNombEjtvo("BONIFAZ BERNON FABIOLA");
 		datosEjecutivo.setNumOficEjctvo(null);
-		
+
 		informacionContratante.setTxtBucClnteContr("52145824");
 		informacionContratante.setTxtNombClnteContr("SALESVER/ADIONVER/AMARILIS");
 		informacionContratante.setIdSgmtoClnteContr(0);
 		informacionContratante.setDscSgmtoBanco("Otro");
 		informacionContratante.setDscSgmtoClnte("SIN SEGMENTO");
 		informacionContratante.setDscMdlAtnSgmtoBanco("N/A");
-		
+
 		informacionSeguimiento.setCodStatSegui(null);
 		informacionSeguimiento.setDscStatSegui(null);
 		informacionSeguimiento.setDscStatMarca(null);
@@ -108,35 +115,20 @@ class SolicitudAclaracionesControllerTest {
 		informacionSeguimiento.setDscObser(null);
 		informacionSeguimiento.setStatusCode(0);
 		informacionSeguimiento.setStatusDesc("OK");
-		
-		consulta.setInformacionGeneral(informacionGeneral);
-		consulta.setDatosContratacion(datosContratacion);
-		consulta.setDatosEjecutivo(datosEjecutivo);
-		consulta.setInformacionContratante(informacionContratante);
-		consulta.setInformacionSeguimiento(informacionSeguimiento);
-		
-		ConsultaSolicitudesAclaracionesRequest request = new ConsultaSolicitudesAclaracionesRequest();
-		
-		request.setIdApp("RC");
-		request.setIdCanal(1);
-		request.setIdRamo(13);
-		request.setNumPol("14570");
-		
-		Mockito.when(service.getConsulta(request)).thenReturn(consulta);
-		String json = mapper.writeValueAsString(request);
-		mockMvc.perform(get("/aclaraciones/consultas/consultar").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
-				.content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
- }
-	
-	
-	@Test
-	void solicitudAclaracionesGetError() throws Exception{
-		ConsultaSolicitudesAclaracionesRequest request = new ConsultaSolicitudesAclaracionesRequest();
-		Mockito.when(service.getConsulta(ArgumentMatchers.any())).thenThrow();
-		String json = mapper.writeValueAsString(request);
-		mockMvc.perform(get("/aclaraciones/consultas/consultar").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
-				.content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
 
+		aclaraciones.setInformacionGeneral(informacionGeneral);
+		aclaraciones.setDatosContratacion(datosContratacion);
+		aclaraciones.setDatosEjecutivo(datosEjecutivo);
+		aclaraciones.setInformacionContratante(informacionContratante);
+		aclaraciones.setInformacionSeguimiento(informacionSeguimiento);
+
+		when(jdbcTemplate.queryForObject(ArgumentMatchers.anyString(),
+				 ArgumentMatchers.any(ConsultaSolicitudAclaracionesMapper.class),
+				ArgumentMatchers.anyString(),ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt(),ArgumentMatchers.anyString())).thenReturn(aclaraciones);
+
+		ConsultaSolicitudAclaracionesResponse response = isolicitudAclaracionesRepository.getConsulta(request);
+
+		assertEquals(aclaraciones, response);
 	}
-	
+
 }

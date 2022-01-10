@@ -42,4 +42,10 @@ public class SolicitudAclaracionesController {
 
 	}
 
+	public void setSolicitud(ISolicitudAclaracionesService service) {
+		iSolicitudAclaracionesService = service;
+		
+	}
+
+	
 }
