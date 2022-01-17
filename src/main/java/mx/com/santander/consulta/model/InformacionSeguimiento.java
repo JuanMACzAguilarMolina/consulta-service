@@ -6,12 +6,15 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Anzen
  *
  */
-@Data
+@Setter
+@Getter
 public class InformacionSeguimiento implements Serializable {
 	
 	/**

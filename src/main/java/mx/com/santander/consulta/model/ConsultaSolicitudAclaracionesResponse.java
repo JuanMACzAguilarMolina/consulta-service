@@ -4,12 +4,15 @@ import java.io.Serializable;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Anzen
  *
  */
-@Data
+@Setter
+@Getter
 public class ConsultaSolicitudAclaracionesResponse implements Serializable {
 	
 	

@@ -26,10 +26,11 @@ public class SolicitudAclaracionesService implements ISolicitudAclaracionesServi
 		return consultaSolicitudAclaracionesResponse;
 	}
 
-	@Override
-	public void setRepository(ISolicitudAclaracionesRepository solicitud) {
-		this.solicitud = solicitud;
-
-	}
+	
+	  @Override public void setRepository(ISolicitudAclaracionesRepository
+	  solicitud) { this.solicitud = solicitud;
+	  
+	  }
+	 
 
 }

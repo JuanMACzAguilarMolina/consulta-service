@@ -3,11 +3,14 @@ package mx.com.santander.consulta.model;
 import java.io.Serializable;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 /**
  * @author Anzen
  *
  */
-@Data
+@Setter
+@Getter
 public class DatosContratacion implements Serializable {
 	
 	/**

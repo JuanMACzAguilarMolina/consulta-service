@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +25,7 @@ public class SolicitudAclaracionesController {
 	@Autowired
 	private ISolicitudAclaracionesService iSolicitudAclaracionesService;
 
-	@GetMapping(value = Constants.ENDPOINT_CONSULTA, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = Constants.ENDPOINT_CONSULTA, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getConsulta(
 			@RequestBody ConsultaSolicitudesAclaracionesRequest consultaSolicitudesAclaracionesRequest) {
 		log.info("Se inicia la solicitud controlador de consultas");

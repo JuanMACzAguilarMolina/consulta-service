@@ -13,6 +13,10 @@ import mx.com.santander.consulta.model.ConsultaSolicitudesAclaracionesRequest;
  * @author Anzen
  *
  */
+/**
+ * @author Anzen
+ *
+ */
 @Repository
 @Slf4j
 public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRepository {
@@ -38,16 +42,16 @@ public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRe
 	
 	}
 
-	@Override
-	public void setRepository(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-		
-	}
-
-	@Override
-	public void setConsultas(ConsultaReporte consultas) {
-		this.consultas = consultas;
-		
-	}
+	
+	  @Override public void setRepository(JdbcTemplate jdbcTemplate) {
+	  this.jdbcTemplate = jdbcTemplate;
+	  
+	  }
+	  
+	  @Override public void setConsultas(ConsultaReporte consultas) {
+	  this.consultas = consultas;
+	  
+	  }
+	 
 
 }
