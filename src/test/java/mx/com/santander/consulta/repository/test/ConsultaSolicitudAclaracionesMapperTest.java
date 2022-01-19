@@ -1,4 +1,4 @@
-package mx.com.santander.consulta.dao.test;
+package mx.com.santander.consulta.repository.test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import mx.com.santander.consulta.dao.ConsultaSolicitudAclaracionesMapper;
+import mx.com.santander.consulta.mapper.ConsultaSolicitudAclaracionesMapper;
 import mx.com.santander.consulta.model.ConsultaSolicitudAclaracionesResponse;
 
 /**

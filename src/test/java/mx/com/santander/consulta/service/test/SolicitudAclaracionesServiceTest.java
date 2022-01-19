@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import mx.com.santander.consulta.dao.ISolicitudAclaracionesRepository;
 import mx.com.santander.consulta.model.ConsultaSolicitudAclaracionesResponse;
 import mx.com.santander.consulta.model.ConsultaSolicitudesAclaracionesRequest;
 import mx.com.santander.consulta.model.DatosContratacion;
@@ -18,6 +17,7 @@ import mx.com.santander.consulta.model.DatosEjecutivo;
 import mx.com.santander.consulta.model.InformacionContratante;
 import mx.com.santander.consulta.model.InformacionGeneral;
 import mx.com.santander.consulta.model.InformacionSeguimiento;
+import mx.com.santander.consulta.repository.ISolicitudAclaracionesRepository;
 import mx.com.santander.consulta.service.ISolicitudAclaracionesService;
 import mx.com.santander.consulta.service.SolicitudAclaracionesService;
 

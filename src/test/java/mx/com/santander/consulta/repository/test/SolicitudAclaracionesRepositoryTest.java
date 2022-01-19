@@ -1,4 +1,4 @@
-package mx.com.santander.consulta.dao.test;
+package mx.com.santander.consulta.repository.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -11,12 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import mx.com.santander.consulta.consultas.ConsultaReporte;
-import mx.com.santander.consulta.dao.ConsultaSolicitudAclaracionesMapper;
-import mx.com.santander.consulta.dao.ISolicitudAclaracionesRepository;
-import mx.com.santander.consulta.dao.SolicitudAclaracionesRepository;
+import mx.com.santander.consulta.mapper.ConsultaSolicitudAclaracionesMapper;
 import mx.com.santander.consulta.model.ConsultaSolicitudAclaracionesResponse;
 import mx.com.santander.consulta.model.ConsultaSolicitudesAclaracionesRequest;
 import mx.com.santander.consulta.model.DatosContratacion;
@@ -24,6 +21,8 @@ import mx.com.santander.consulta.model.DatosEjecutivo;
 import mx.com.santander.consulta.model.InformacionContratante;
 import mx.com.santander.consulta.model.InformacionGeneral;
 import mx.com.santander.consulta.model.InformacionSeguimiento;
+import mx.com.santander.consulta.repository.ISolicitudAclaracionesRepository;
+import mx.com.santander.consulta.repository.SolicitudAclaracionesRepository;
 
 class SolicitudAclaracionesRepositoryTest {
 
