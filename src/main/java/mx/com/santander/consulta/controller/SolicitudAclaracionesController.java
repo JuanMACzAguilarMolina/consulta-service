@@ -25,6 +25,11 @@ public class SolicitudAclaracionesController {
 	@Autowired
 	private ISolicitudAclaracionesService iSolicitudAclaracionesService;
 
+	/**
+	 * Metodo getConsulta
+	 * @param consultaSolicitudesAclaracionesRequest
+	 * @return ResponseEntity
+	 */
 	@PostMapping(value = Constants.ENDPOINT_CONSULTA, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getConsulta(
 			@RequestBody ConsultaSolicitudesAclaracionesRequest consultaSolicitudesAclaracionesRequest) {
@@ -42,6 +47,10 @@ public class SolicitudAclaracionesController {
 
 	}
 
+	/**
+	 * Metodo setSolicitud
+	 * @param service
+	 */
 	public void setSolicitud(ISolicitudAclaracionesService service) {
 		iSolicitudAclaracionesService = service;
 		

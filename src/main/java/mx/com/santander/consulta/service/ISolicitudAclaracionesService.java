@@ -1,8 +1,8 @@
 package mx.com.santander.consulta.service;
 
-import mx.com.santander.consulta.dao.ISolicitudAclaracionesRepository;
 import mx.com.santander.consulta.model.ConsultaSolicitudAclaracionesResponse;
 import mx.com.santander.consulta.model.ConsultaSolicitudesAclaracionesRequest;
+import mx.com.santander.consulta.repository.ISolicitudAclaracionesRepository;
 
 /**
  * @author Anzen

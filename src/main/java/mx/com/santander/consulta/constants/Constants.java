@@ -4,7 +4,7 @@ package mx.com.santander.consulta.constants;
  * @author Anzen
  *
  */
-public interface Constants {
+public final class Constants {
 	
 	public static final String ENDPOINT_GENERAL_ACLARACIONES="/aclaraciones";
 	

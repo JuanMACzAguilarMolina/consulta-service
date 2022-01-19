@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.com.santander.consulta.dao.ISolicitudAclaracionesRepository;
 import mx.com.santander.consulta.model.ConsultaSolicitudAclaracionesResponse;
 import mx.com.santander.consulta.model.ConsultaSolicitudesAclaracionesRequest;
+import mx.com.santander.consulta.repository.ISolicitudAclaracionesRepository;
 
 @Service
 @Slf4j
@@ -15,6 +15,9 @@ public class SolicitudAclaracionesService implements ISolicitudAclaracionesServi
 	@Autowired
 	private ISolicitudAclaracionesRepository solicitud;
 
+	/**
+	 * Metodo getConsulta
+	 */
 	@Override
 	public ConsultaSolicitudAclaracionesResponse getConsulta(
 			ConsultaSolicitudesAclaracionesRequest consultaSolicitudesAclaracionesRequest) {
@@ -26,11 +29,14 @@ public class SolicitudAclaracionesService implements ISolicitudAclaracionesServi
 		return consultaSolicitudAclaracionesResponse;
 	}
 
-	
+	/**
+	 * Metodo setRepository
+	 */
 	  @Override 
-	  public void setRepository(ISolicitudAclaracionesRepository solicitud) {
+	  public void setRepository(ISolicitudAclaracionesRepository solicitud) { 
+		  
 		  this.solicitud = solicitud;
-	  
+		  
 	  }
 	 
 
