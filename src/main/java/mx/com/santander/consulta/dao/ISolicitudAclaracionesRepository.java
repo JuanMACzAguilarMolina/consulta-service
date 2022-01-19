@@ -19,6 +19,7 @@ public interface ISolicitudAclaracionesRepository {
 	 */
 	ConsultaSolicitudAclaracionesResponse getConsulta(ConsultaSolicitudesAclaracionesRequest consultaSolicitudesAclaracionesRequest);
 
+	
 	/**
 	 * @param jdbcTemplate
 	 */

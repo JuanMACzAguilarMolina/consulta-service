@@ -43,12 +43,14 @@ public class SolicitudAclaracionesRepository implements ISolicitudAclaracionesRe
 	}
 
 	
-	  @Override public void setRepository(JdbcTemplate jdbcTemplate) {
+	  @Override
+	  public void setRepository(JdbcTemplate jdbcTemplate) {
 	  this.jdbcTemplate = jdbcTemplate;
 	  
 	  }
 	  
-	  @Override public void setConsultas(ConsultaReporte consultas) {
+	  @Override
+	  public void setConsultas(ConsultaReporte consultas) {
 	  this.consultas = consultas;
 	  
 	  }

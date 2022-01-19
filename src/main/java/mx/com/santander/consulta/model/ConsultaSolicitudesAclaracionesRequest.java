@@ -2,7 +2,7 @@ package mx.com.santander.consulta.model;
 
 import java.io.Serializable;
 
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.Setter;
 

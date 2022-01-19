@@ -27,8 +27,9 @@ public class SolicitudAclaracionesService implements ISolicitudAclaracionesServi
 	}
 
 	
-	  @Override public void setRepository(ISolicitudAclaracionesRepository
-	  solicitud) { this.solicitud = solicitud;
+	  @Override 
+	  public void setRepository(ISolicitudAclaracionesRepository solicitud) {
+		  this.solicitud = solicitud;
 	  
 	  }
 	 
